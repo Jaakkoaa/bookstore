@@ -1,5 +1,7 @@
 package palvelinohjelmointi.bookstore;
 
+import java.util.ArrayList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -7,9 +9,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
 
 import palvelinohjelmointi.bookstore.domain.Book;
 import palvelinohjelmointi.bookstore.domain.BookRepository;
+import palvelinohjelmointi.bookstore.domain.Gategory;
+import palvelinohjelmointi.bookstore.domain.GategoryRepository;
 
 
 
@@ -22,12 +27,27 @@ public class BookstoreApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner studentDemo(BookRepository repository) {
+	public CommandLineRunner studentDemo(BookRepository repository, GategoryRepository grepository) {
 		return (args) -> {
-			log.info("save two books");
-			repository.save(new Book("Bible","many authors", 200,"131554ss", 2.0));
-			repository.save(new Book("Quran","many authors", 600,"131554ss", 2.0) );	
 			
+			log.info("save a gategory");
+			
+	
+			grepository.save(new Gategory("Holy Books"));
+			
+			log.info("save two books");
+			
+			
+			
+			
+			
+			repository.save(new Book("Bible","many authors", 200,"131554ss", 2.0,
+					grepository.findByName("Holy Books")));
+			
+			repository.save(new Book("Quran","many authors", 600,"131554ss", 2.0,
+					grepository.findByName("Holy Books")));	
+			
+		
 			log.info("finding every book");
 			for (Book book : repository.findAll()) {
 				log.info(book.toString());
