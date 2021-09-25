@@ -34,6 +34,7 @@ public class BookstoreApplication {
 			
 	
 			grepository.save(new Gategory("Holy Books"));
+			grepository.save(new Gategory("History"));
 			
 			log.info("save two books");
 			
@@ -46,6 +47,9 @@ public class BookstoreApplication {
 			
 			repository.save(new Book("Quran","many authors", 600,"131554ss", 2.0,
 					grepository.findByName("Holy Books")));	
+			
+			repository.save(new Book("The history of christianity","D. MacCulloch", 2015,"1312554ss", 6.0,
+					grepository.findByName("History")));	
 			
 		
 			log.info("finding every book");
