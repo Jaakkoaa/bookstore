@@ -15,6 +15,8 @@ import palvelinohjelmointi.bookstore.domain.Book;
 import palvelinohjelmointi.bookstore.domain.BookRepository;
 import palvelinohjelmointi.bookstore.domain.Gategory;
 import palvelinohjelmointi.bookstore.domain.GategoryRepository;
+import palvelinohjelmointi.bookstore.domain.User;
+import palvelinohjelmointi.bookstore.domain.UserRepository;
 
 
 
@@ -27,7 +29,8 @@ public class BookstoreApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner studentDemo(BookRepository repository, GategoryRepository grepository) {
+	public CommandLineRunner studentDemo(BookRepository repository, GategoryRepository grepository,
+			UserRepository urepository) {
 		return (args) -> {
 			
 			log.info("save a gategory");
@@ -37,10 +40,6 @@ public class BookstoreApplication {
 			grepository.save(new Gategory("History"));
 			
 			log.info("save two books");
-			
-			
-			
-			
 			
 			repository.save(new Book("Bible","many authors", 200,"131554ss", 2.0,
 					grepository.findByName("Holy Books")));
@@ -56,7 +55,10 @@ public class BookstoreApplication {
 			for (Book book : repository.findAll()) {
 				log.info(book.toString());
 			}
-
+			
+			urepository.save(new User("admin", "$2a$10$fMKk86JHMeM0n963Lsz4Jux4e.uj8HDeQvEYLfHczJsyWRAD8zzFO", "ADMIN", "admin.admin@admin.com"));
+			urepository.save(new User("user", "$2a$10$FQOYjvd8h5N0j0eXl8pNJeCIVjfRQZ9sPY1T5pdbwvLXRg9JCuzAa", "USER", "user.user@user.com"));
+			urepository.save(new User("jakko", "$2a$10$faNxzuacHR.x1XhyIZkiduKEYOR5E3TQUJz8XnWcXsD030cG2vjRW", "USER", "jakko.akku@mail.com"));
 		};
 	}
 }
