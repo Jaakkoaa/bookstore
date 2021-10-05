@@ -22,6 +22,12 @@ public class BookController {
 	@Autowired
 	private GategoryRepository grepository;
 	
+	
+	  @RequestMapping(value="/login")
+	    public String login() {	
+	        return "login";
+	    }	
+	
 	 @RequestMapping(value= {"/", "/books"})
 	    public String studentList(Model model) {	
 	        model.addAttribute("books", repository.findAll());
