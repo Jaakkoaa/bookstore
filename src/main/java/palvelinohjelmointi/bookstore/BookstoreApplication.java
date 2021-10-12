@@ -9,8 +9,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.List;
-
 import palvelinohjelmointi.bookstore.domain.Book;
 import palvelinohjelmointi.bookstore.domain.BookRepository;
 import palvelinohjelmointi.bookstore.domain.Gategory;
@@ -32,7 +30,7 @@ public class BookstoreApplication {
 	public CommandLineRunner studentDemo(BookRepository repository, GategoryRepository grepository,
 			UserRepository urepository) {
 		return (args) -> {
-			
+			urepository.deleteAll();
 			log.info("save a gategory");
 			
 	

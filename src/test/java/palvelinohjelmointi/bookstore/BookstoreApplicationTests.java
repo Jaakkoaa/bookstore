@@ -2,7 +2,7 @@ package palvelinohjelmointi.bookstore;
 
 
 
-
+import static org.assertj.core.api.Assertions.assertThat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.junit.jupiter.api.Test;
@@ -18,8 +18,11 @@ public class BookstoreApplicationTests {
 	@Autowired
 	private BookController controller;
 
+	
 	@Test
-	public void contextLoads(){
-		
+	public void ContextLoads() throws Exception  {
+	assertThat(controller).isNotNull();
 	}
+	
+
 }
